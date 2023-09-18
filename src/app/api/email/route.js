@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import Mail from "nodemailer/lib/mailer";
 
-export async function POST(request: NextRequest) {
+export async function POST(request) {
   const data = await request.json();
 
   const transport = nodemailer.createTransport({
@@ -13,13 +13,13 @@ export async function POST(request: NextRequest) {
     },
   });
 
-  const ToThem: Mail.Options = {
+  const ToThem = {
     from: process.env.MY_EMAIL,
     to: data.email,
     subject: `Portfolio Contact`,
     text: "Thank You For Contacting Us. We Will Get Back to You As Soon As Possible!",
   };
-  const ToMe: Mail.Options = {
+  const ToMe = {
     from: {
       name: "Contact form", // Custom sender name
       address: process.env.MY_EMAIL,
